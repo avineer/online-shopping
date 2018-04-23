@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.avineer.shoppingbackend.dao.CategoryDAO;
-import net.avineer.shoppingbackend.dta.Category;
+import net.avineer.shoppingbackend.dto.Category;
 
 @Controller
 public class PageController {

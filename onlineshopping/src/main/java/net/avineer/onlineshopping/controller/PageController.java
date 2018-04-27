@@ -1,11 +1,14 @@
 package net.avineer.onlineshopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.avineer.onlineshopping.exception.ProductNotFoundException;
 import net.avineer.shoppingbackend.dao.CategoryDAO;
 import net.avineer.shoppingbackend.dao.ProductDAO;
 import net.avineer.shoppingbackend.dto.Category;
@@ -13,6 +16,8 @@ import net.avineer.shoppingbackend.dto.Product;
 
 @Controller
 public class PageController {
+
+	private static final Logger logger =  LoggerFactory.getLogger(PageController.class);
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -21,7 +26,10 @@ public class PageController {
 	
 	@RequestMapping(value = {"/", "/home", "/index"})
 	public ModelAndView index() {		
-		ModelAndView mv = new ModelAndView("page");		
+		ModelAndView mv = new ModelAndView("page");	
+		
+		logger.info("Inside PageController index method");
+		
 		mv.addObject("title","Home");
 		// Passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
@@ -77,10 +85,11 @@ public class PageController {
 	
 	// Viewing a single product
 	@RequestMapping(value = "/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable("id") int id) {	
+	public ModelAndView showSingleProduct(@PathVariable("id") int id)  throws ProductNotFoundException {	
 		ModelAndView mv = new ModelAndView("page");	
 		
 		Product product = productDAO.get(id);
+		if (product == null) throw new ProductNotFoundException();
 		
 		// Increment the view count for this product by 1 
 		product.setViews(product.getViews() + 1);

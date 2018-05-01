@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
@@ -84,6 +87,12 @@
 				<%@include file="singleProduct.jsp"%>
 			</c:if>	
 			
+			<!-- Load only when user clicks Manage Products -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>	
+						
+			
 		</div>
 
 
@@ -103,6 +112,9 @@
 		
 		<!-- DataTable bootstrap scripts  -->
 		<script src="${js}/dataTables.bootstrap.js"></script>
+
+		<!-- bootbox scripts  -->
+		<script src="${js}/bootbox.min.js"></script>
 
 		<!-- Self coded javascript -->
 		<script src="${js}/myapp.js"></script>

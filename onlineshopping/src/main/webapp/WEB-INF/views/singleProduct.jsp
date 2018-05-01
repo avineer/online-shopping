@@ -41,11 +41,14 @@
 			<p>${product.description}</p>
 			<hr/>
 			
-			<h4>Price: <strong>&#36; ${product.unitPrice} /-</strong></h4>
+				<h4>Price: 
+ 	        		<strong>
+          			<fmt:setLocale value = "en_US"/>
+         			<fmt:formatNumber value = "${product.unitPrice}" type = "currency"/>
+         			</strong>
+         		</h4>
 			<hr/>
-			
-			
-			
+						
 			<c:choose>			
 				<c:when test="${product.quantity < 1}">
 					<h6> Qty. Available: <span style="color:red">Out of Stock!</span></h6>
@@ -65,9 +68,7 @@
 				 		<span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a>
 				</c:otherwise>
 			</c:choose>
-			
-			
-
+						
 				 
 			<a href="${contextRoot}/show/all/products" class="btn btn-success">Back</a>			
 		

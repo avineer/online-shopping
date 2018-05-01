@@ -8,7 +8,7 @@
 	</appender>
 
 	
-	<logger name="net.avineer" level="DEBUG" additivity = "false">
+	<logger name="net.avineer" level="INFO" additivity = "false">
 		<appender-ref ref="consoleAppender"/>	
 	</logger>	
 

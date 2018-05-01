@@ -24,7 +24,10 @@
 		
 	</bean>
 	
-	
+	<!-- id must be  multipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+			
 	<!-- Loading static resources -->
 	<mvc:annotation-driven />
 	

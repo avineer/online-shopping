@@ -213,11 +213,9 @@ $(function() {
 								
 								console.log('in active');
 								if(data) {	
-									console.log('active true');
 									str += '<label class="switch"> <input type="checkbox" value="'+row.id+'" checked="checked">  <div class="slider round"> </div></label>';
 									
 								} else {
-									console.log('active false');
 									str += '<label class="switch"> <input type="checkbox" value="'+row.id+'">  <div class="slider round"> </div></label>';
 								}
 								
@@ -241,7 +239,6 @@ $(function() {
 					  ],
 					  
 						initComplete: function () {
-							console.log('in initComplete');
 							var api = this.api();
 							api.$('.switch input[type="checkbox"]').on('change' , function() {	
 								var checkbox = $(this);
@@ -256,7 +253,6 @@ $(function() {
 							    	message: dMsg,
 							    	callback: function (confirmed) {
 								        if (confirmed) {
-								        	console.log(value);
 								        	var activationUrl = window.contextRoot + '/manage/product/' + value + '/activation';
 								        	$.post(activationUrl, function(data) {
 								        		bootbox.alert({
@@ -279,8 +275,44 @@ $(function() {
 	}
 	
 	
-	//------------------	
+	//-----------------------------	
+	// Validation code for category
 	
+	var $categoryForm = $('#categoryForm')
+	
+	if($categoryForm.length){
+		$categoryForm.validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 2
+				},
+				description: {
+					required: true
+				}		
+			},
+			
+			messages: {
+				name: {
+					required: 'Please add the category name!',
+					minlength: 'The category name should be 2 or more chareacters!'
+				},
+				description: {
+					required: 'Please add the category description!'
+				}
+			},
+			errorElement:'em',
+			errorPlacement: function(error,element) {
+				// add the class of help-block
+				error.addClass('help-block');
+				// add the error element after the input element
+				error.insertAfter(element);
+			}			
+		});
+		
+	}
+	
+	//---------------
 	
 	
 });

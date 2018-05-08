@@ -16,7 +16,7 @@
     ">
 
 	<context:component-scan base-package="net.avineer.onlineshopping"/>
-	<context:component-scan base-package="net.avineer.shoppingbackend"/>
+
 
 
 	<bean id="viewResolver"

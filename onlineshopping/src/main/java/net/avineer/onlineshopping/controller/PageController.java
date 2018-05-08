@@ -1,11 +1,18 @@
 package net.avineer.onlineshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.avineer.onlineshopping.exception.ProductNotFoundException;
@@ -102,6 +109,47 @@ public class PageController {
 		mv.addObject("userClickShowProduct", true);
 		
 		return mv;
+	}
+	
+	// Login
+	@RequestMapping(value = "/login")
+	public ModelAndView login(@RequestParam(name="error", required = false) String error,
+			@RequestParam(name="logout", required = false) String logout) {	
+		ModelAndView mv = new ModelAndView("login");
+		
+		if(error !=null) {
+			mv.addObject("message", "Invalid Username and Password!");
+		}
+		
+		if(logout !=null) {
+			mv.addObject("logout", "You have successfully logged out!");
+		}		
+		
+		mv.addObject("title","Login");
+		return mv;
+	}
+	
+	// Access denied page
+	@RequestMapping(value = "/access-denied")
+	public ModelAndView accessDenied() {	
+		ModelAndView mv = new ModelAndView("error");
+		mv.addObject("title","403 - Access Denied");
+		mv.addObject("errorTitle","Access Denied!");
+		mv.addObject("errorDescription","You are not authorized to view this page!");
+		return mv;
+	}
+
+	// Logout
+	@RequestMapping(value = "/perform-logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {	
+		
+		// We need to fetch the authentication
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		
+		return "redirect:/login?logout";
 	}
 	
 }

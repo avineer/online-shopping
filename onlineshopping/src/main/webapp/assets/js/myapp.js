@@ -22,6 +22,18 @@ $(function() {
 	
 	}
 
+	// Handle the csrf token
+	//----------------------
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if(token.length > 0 && header.length > 0) {
+		
+		// set the token header for the ajax  request
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});		
+	}
 	
 	
 	// Code for jQuery dataTable
@@ -105,17 +117,25 @@ $(function() {
 										+ data
 										+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
 
-									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+									if(userRole !== 'ADMIN') {
+										if (row.quantity < 1) {
+											str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										} else {
+	
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add/'
+													+ data
+													+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										}
 									}
 									else {
 										str += '<a href="'
 											+ window.contextRoot
-											+ '/cart/add/'
+											+ '/manage/'
 											+ data
-											+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';										
-									}
-									
+											+ '/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+									}									
 									return str;
 							}
 								
@@ -133,8 +153,6 @@ $(function() {
 		} ,  3000)
 	}
 	
-	
-	//----------------------
 	
 	
 	//------------------
@@ -312,7 +330,44 @@ $(function() {
 		
 	}
 	
-	//---------------
+	//-----------------------------	
+	// Validation code for login
 	
+	var $loginForm = $('#loginForm')
+	
+	if($loginForm.length){
+		$loginForm.validate({
+			rules: {
+				username: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true
+				}		
+			},
+			
+			messages: {
+				username: {
+					required: 'Please enter the username!',
+					email: 'Please enter valid email address!'
+				},
+				password: {
+					required: 'Please enter a password!',
+					minlength: 'Password must have 5 charecters or more'
+				}
+			},
+			errorElement:'em',
+			errorPlacement: function(error,element) {
+				// add the class of help-block
+				error.addClass('help-block');
+				// add the error element after the input element
+				error.insertAfter(element);
+			}			
+		});
+		
+	}
+	
+	//----------------
 	
 });

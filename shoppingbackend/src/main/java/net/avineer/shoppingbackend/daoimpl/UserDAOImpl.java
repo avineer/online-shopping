@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.avineer.shoppingbackend.dao.UserDAO;
 import net.avineer.shoppingbackend.dto.Address;
-import net.avineer.shoppingbackend.dto.Cart;
 import net.avineer.shoppingbackend.dto.User;
 
 
@@ -43,16 +42,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 	
-	@Override
-	public boolean updateCart(Cart cart) {
-		try {			
-			sessionFactory.getCurrentSession().update(cart);			
-			return true;
-		}
-		catch(Exception ex) {
-			return false;
-		}		
-	}
 
 	@Override
 	public User getByEmail(String email) {

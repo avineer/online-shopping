@@ -4,7 +4,6 @@ package net.avineer.shoppingbackend.dao;
 import java.util.List;
 
 import net.avineer.shoppingbackend.dto.Address;
-import net.avineer.shoppingbackend.dto.Cart;
 import net.avineer.shoppingbackend.dto.User;
 
 public interface UserDAO {
@@ -22,8 +21,6 @@ public interface UserDAO {
 	
 	//Address getBillingAddress(User user);
 	//List<Address> listShippingAddresses(User user);
-	
-	boolean updateCart(Cart cart);
 	
 
 	

@@ -13,6 +13,9 @@ $(function() {
 			break;
 		case 'Manage Products':
 			$('#manageProducts').addClass('active');
+			break;
+		case 'User Cart':
+			$('#userCart').addClass('active');
 			break;				
 		default:
 			if (menu == "Home") break;
@@ -368,6 +371,37 @@ $(function() {
 		
 	}
 	
-	//----------------
+	//------------------------------------------------
+	// handling the click event of refresh cart button
+	//------------------------------------------------
+	$('button[name="refreshCart"]').click(function(){
+		var cartLineId = $(this).attr('value');
+		var countElement = $('#count_'+cartLineId)
+		
+		var originalCount = countElement.attr('value');
+		var currentCount = countElement.val();
+		
+		// Refresh only if the count changed
+		if (originalCount !== currentCount) {
+			
+			if (currentCount < 1 || currentCount > 3) {
+				// revert back to the original count
+				countElement.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+					title: 'Error',
+					message: 'Product count should be minium 1 and maximum 3!'
+				});				
+			} else {
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + currentCount;
+				// forward it to the controller
+				window.location.href = updateUrl;
+			}
+
+		} 
+			
+	});
+	
+	//-----------------
 	
 });

@@ -1,9 +1,9 @@
-package net.avineer.shoppingbackend;
+/*package net.avineer.shoppingbackend;
 
-/**
+*//**
  * Hello world!
  *
- */
+ *//*
 public class App 
 {
     public static void main( String[] args )
@@ -11,3 +11,4 @@ public class App
         System.out.println( "Hello World!" );
     }
 }
+*/

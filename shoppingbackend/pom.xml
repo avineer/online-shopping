@@ -15,10 +15,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<hibernate.version>5.2.7.Final</hibernate.version>
-		<jackson.version>2.8.7</jackson.version>
+		<jackson.version>2.9.9</jackson.version>
 	</properties>
 
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -26,9 +26,9 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- SPRING -->	
-		
+
+		<!-- SPRING -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -38,43 +38,43 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
-			</exclusions>			
+			</exclusions>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
-		</dependency>	
-		
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
-		</dependency>					
-		
-		<!--  H2 database -->	
-		<!-- 
+		</dependency>
+
+		<!--  H2 database -->
+		<!--
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.196</version>
-		</dependency>	
+		</dependency>
 		 -->
-		
-		<!-- MySQL database -->		
+
+		<!-- MySQL database -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>5.1.6</version>
-		</dependency>			
+		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -87,7 +87,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- Database connection pooling  -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -98,8 +98,8 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
-			</exclusions>				
-		</dependency>						
+			</exclusions>
+		</dependency>
 
 		<!-- Jackson  -->
 		<dependency>
@@ -108,46 +108,46 @@
 		    <version>${jackson.version}</version>
 		</dependency>
 
-										
+
         <dependency>
     		<groupId>com.fasterxml.jackson.core</groupId>
     		<artifactId>jackson-annotations</artifactId>
     		<version>${jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
     		<groupId>com.fasterxml.jackson.core</groupId>
     		<artifactId>jackson-databind</artifactId>
     	<version>${jackson.version}</version>
 		</dependency>
-		
+
 		<!-- SLF4J Logging -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.1</version>
-		</dependency>	
-		
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.24</version>
 		</dependency>
-		
+
 		<!-- Hibernate Validator -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>5.4.1.Final</version>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
-		</dependency>	
-				
-			
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>

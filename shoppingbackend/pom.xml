@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.18.RELEASE</spring.version>
-		<hibernate.version>5.2.7.Final</hibernate.version>
+		<hibernate.version>5.3.38.Final</hibernate.version>
 		<jackson.version>2.9.9</jackson.version>
 	</properties>
 
@@ -125,7 +125,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.1</version>
+			<version>1.5.25</version>
 		</dependency>
 
 		<dependency>
